@@ -13,7 +13,7 @@ const fadeIn = {
   transition: { duration: 0.5 }
 };
 
-const Section = ({ children, className = "", id = "" }) => (
+const Section: React.FC<{ children: React.ReactNode; className?: string; id?: string }> = ({ children, className = "", id = "" }) => (
   <motion.section
     id={id}
     initial={{ opacity: 0, y: 50 }}
@@ -37,7 +37,7 @@ const Section = ({ children, className = "", id = "" }) => (
   </motion.section>
 );
 
-const ContactForm = ({ isOpen, onClose }) => {
+const ContactForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -173,7 +173,7 @@ const NavBar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-gradient-to-r from-blue-900/90 to-red-900/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        isScrolled ? 'bg-transparent backdrop-blur-md' : 'bg-transparent backdrop-blur-md'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -234,7 +234,7 @@ const NavBar = () => {
   );
 };
 
-const SocialIcon = ({ href, children, label }) => (
+const SocialIcon: React.FC<{ href: string; children: React.ReactNode; label: string }> = ({ href, children, label }) => (
   <motion.a
     href={href}
     target="_blank"
@@ -261,7 +261,7 @@ const Footer = () => (
             ADN DEVs
           </motion.h3>
           <p className="text-gray-300 text-sm">
-            Transformando ideas en soluciones digitales innovadoras.
+            Llevamos codigo en nuestro ADN.
           </p>
         </div>
 
@@ -366,7 +366,7 @@ export default function Home() {
   }
 
   return (
-    <main className="bg-gradient-to-br from-blue-950 via-gray-900 to-red-950 text-white relative min-h-screen">
+    <main className="bg-black text-white relative min-h-screen">
       <NavBar />
       <div className="fixed inset-0">
         <Particles
@@ -470,13 +470,13 @@ export default function Home() {
         {/* Misión Section */}
         <Section id="mision" className="bg-blue-900/20">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-red-500">
               Nuestra Misión
             </h2>
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-              Impulsar la transformación digital de nuestros clientes a través de soluciones 
-              tecnológicas innovadoras y personalizadas, garantizando la máxima calidad y 
-              satisfacción en cada proyecto.
+            Crear soluciones tecnológicas prácticas y accesibles que resuelvan problemas cotidianos y mejoren
+             la vida de las personas. Nos enfocamos en desarrollar herramientas útiles y fáciles de usar, 
+             contribuyendo al crecimiento tecnológico de Villavicencio y apoyando a las comunidades locales.
             </p>
           </div>
         </Section>
@@ -484,13 +484,13 @@ export default function Home() {
         {/* Visión Section */}
         <Section id="vision">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-red-500">
               Nuestra Visión
             </h2>
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-              Ser reconocidos como líderes en el desarrollo de soluciones tecnológicas 
-              innovadoras, estableciendo nuevos estándares de calidad y excelencia en 
-              la industria del desarrollo de software.
+            Ser reconocidos como un equipo confiable y cercano que desarrolla tecnología 
+            útil y de calidad para Villavicencio y Colombia. Queremos ser parte del progreso 
+            de nuestra ciudad, creando soluciones que realmente funcionen y que inspiren a otros a innovar.
             </p>
           </div>
         </Section>
@@ -498,7 +498,7 @@ export default function Home() {
         {/* Valores Section */}
         <Section id="valores" className="bg-blue-900/20">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-red-500">
               Nuestros Valores
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
@@ -533,35 +533,36 @@ export default function Home() {
         {/* Equipo Section */}
         <Section id="equipo">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-red-500">
               Nuestro Equipo
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  name: "Dhaniel Santamaria",
-                  role: "CEO & Full Stack Developer",
-                  description: "Especialista en arquitectura de software y desarrollo full stack con Next.js"
-                },
-                {
-                  name: "La pajarita",
-                  role: "CTO & Backend Developer",
-                  description: "Experto en desarrollo backend y optimización de bases de datos"
-                },
-                {
-                  name: "Culo roto",
-                  role: "CCO & Frontend Developer",
-                  description: "Especialista en diseño UI/UX y desarrollo frontend"
-                }
-              ].map((member, index) => (
+              {[{
+                name: "Dhaniel Santamaria",
+                role: "CEO - Analista de Seguridad - Full Stack Developer",
+                description: "Especialista en seguridad informatica y desarrollo full stack",
+                image: "/images/Jose.jpg"
+              },
+              {
+                name: "Julian Avila",
+                role: "SEO - Frontend Developer",
+                description: "Especialista en diseño UI/UX y desarrollo frontend",
+                image: "/images/Julian.jpg"
+              },
+              {
+                name: "Nicolas Aviles",
+                role: "SEO - Frontend Developer",
+                description: "Especialista en diseño UI/UX y desarrollo frontend",
+                image: "/images/Negro.jpg"
+              }].map((member, index) => (
                 <motion.div
                   key={index}
                   className="p-8 rounded-2xl bg-gradient-to-br from-purple-900/50 to-transparent border border-purple-800/20 backdrop-blur-sm text-center"
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="w-40 h-40 mx-auto mb-6 rounded-full bg-gradient-to-r from-purple-400 to-pink-600 p-1">
-                    <div className="w-full h-full rounded-full bg-gray-900" />
+                  <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden">
+                    <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
                   </div>
                   <h3 className="text-xl font-bold mb-2">{member.name}</h3>
                   <p className="text-purple-400 font-semibold mb-4">{member.role}</p>
@@ -575,7 +576,7 @@ export default function Home() {
         {/* Proyectos Section */}
         <Section id="proyectos" className="bg-blue-900/20">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-red-400">
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-red-500">
               Nuestros Proyectos
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -640,7 +641,7 @@ export default function Home() {
         {/* Recomendación Section */}
         <Section id="recomendacion" className="bg-purple-900/20">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-red-500">
               ¿Por qué elegirnos?
             </h2>
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">

@@ -112,6 +112,7 @@ const NavBar = () => {
   const [activeSection, setActiveSection] = useState('inicio');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -157,6 +158,7 @@ const NavBar = () => {
           requestAnimationFrame(animation);
         } else {
           setIsScrolling(false);
+          setIsMenuOpen(false);
         }
       };
 
@@ -209,6 +211,7 @@ const NavBar = () => {
           <motion.button
             className="md:hidden p-2 rounded-lg hover:bg-blue-800/20"
             whileTap={{ scale: 0.95 }}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <svg
               className="w-6 h-6 text-white"
@@ -225,6 +228,30 @@ const NavBar = () => {
             </svg>
           </motion.button>
         </div>
+        {/* Menú móvil desplegable */}
+        {isMenuOpen && (
+          <div className="md:hidden">
+            {[
+              { id: 'inicio', label: 'Inicio' },
+              { id: 'mision', label: 'Misión' },
+              { id: 'vision', label: 'Visión' },
+              { id: 'valores', label: 'Valores' },
+              { id: 'equipo', label: 'Equipo' },
+              { id: 'proyectos', label: 'Proyectos' }
+            ].map(({ id, label }) => (
+              <motion.button
+                key={id}
+                className="block text-sm font-medium text-gray-300 hover:text-white py-2"
+                onClick={() => {
+                  scrollToSection(id);
+                  setIsMenuOpen(false);
+                }}
+              >
+                {label}
+              </motion.button>
+            ))}
+          </div>
+        )}
       </div>
     </motion.nav>
   );
@@ -257,7 +284,7 @@ const Footer = () => (
             ADN DEVs
           </motion.h3>
           <p className="text-gray-300 text-sm">
-            Llevamos codigo en nuestro ADN.
+            Llevamos código en nuestro ADN.
           </p>
         </div>
 
@@ -265,27 +292,20 @@ const Footer = () => (
         <div className="text-center">
           <h4 className="text-white font-semibold mb-4">Enlaces Rápidos</h4>
           <div className="space-y-2">
-            <motion.a
-              href="#inicio"
-              className="block text-gray-300 hover:text-white transition-colors"
-              whileHover={{ x: 5 }}
-            >
-              Inicio
-            </motion.a>
-            <motion.a
-              href="#proyectos"
-              className="block text-gray-300 hover:text-white transition-colors"
-              whileHover={{ x: 5 }}
-            >
-              Proyectos
-            </motion.a>
-            <motion.a
-              href="#equipo"
-              className="block text-gray-300 hover:text-white transition-colors"
-              whileHover={{ x: 5 }}
-            >
-              Equipo
-            </motion.a>
+            {[
+              { id: 'inicio', label: 'Inicio' },
+              { id: 'proyectos', label: 'Proyectos' },
+              { id: 'equipo', label: 'Equipo' }
+            ].map(({ id, label }) => (
+              <motion.a
+                key={id}
+                href={`#${id}`}
+                className="block text-gray-300 hover:text-white transition-colors"
+                whileHover={{ x: 5 }}
+              >
+                {label}
+              </motion.a>
+            ))}
           </div>
         </div>
 

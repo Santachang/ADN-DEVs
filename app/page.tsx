@@ -583,13 +583,11 @@ export default function Home() {
               {[{
                 title: "MetaEdu Explorer",
                 description: "Plataforma web interactiva que permite explorar y conocer todos los colegios del departamento del Meta. Facilita la búsqueda de instituciones educativas mostrando información detallada, ubicación, características y datos relevantes para padres y estudiantes.",
-                tech: ["Next.js", "React", "Tailwind CSS", "Framer Motion", "MongoDB"],
+                tech: ["Next.js", "React", "Tailwind CSS", "Framer Motion", "PostgreSQL"],
                 features: [
                   "Mapa interactivo de instituciones",
                   "Filtros de búsqueda avanzada",
                   "Perfiles detallados de colegios",
-                  "Sistema de reseñas y calificaciones",
-                  "Comparador de instituciones"
                 ],
                 status: "En desarrollo"
               }].map((project, index) => (

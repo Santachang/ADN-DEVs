@@ -6,6 +6,7 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import type { Engine } from "tsparticles-engine";
 import LoadingScreen from "./components/LoadingScreen";
+import Image from 'next/image';
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -562,7 +563,7 @@ export default function Home() {
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden">
-                    <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                    <Image src={member.image} alt={member.name} width={160} height={160} className="w-full h-full object-cover" />
                   </div>
                   <h3 className="text-xl font-bold mb-2">{member.name}</h3>
                   <p className="text-purple-400 font-semibold mb-4">{member.role}</p>

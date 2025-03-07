@@ -1,18 +1,13 @@
 'use client';
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import type { Engine } from "tsparticles-engine";
 import LoadingScreen from "./components/LoadingScreen";
 import Image from 'next/image';
 
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-};
 
 const Section: React.FC<{ children: React.ReactNode; className?: string; id?: string }> = ({ children, className = "", id = "" }) => (
   <motion.section
